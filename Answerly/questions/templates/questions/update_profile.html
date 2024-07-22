@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <h1>Update Profile</h1>
+    <div class="log">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ u_form.as_p }}
+            {{ i_form.as_p }}
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

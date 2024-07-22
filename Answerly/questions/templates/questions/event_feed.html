@@ -1,0 +1,14 @@
+{% for event in events %}
+    <article class = "media content-section">
+            <div>
+                <img class="account-img" style="border-radius: 50%; width: 50px; height: 50px;" src = "{{ event.host.profile.image.url }}">
+                <p><a href="{% url 'questions:profile' event.host.id %}">@{{event.host.username}}</a></p>
+                {% if request.user == event.host %}
+                <a href="{% url 'questions:update-event' event.id %}">Edit Event | </a>
+                <a href="{% url 'questions:delete-event' event.id %}">Delete Event | </a>
+                {% endif %}
+                <h3><a href="{% url 'questions:event' event.id %}">{{ event.title }}</a></h3>
+                <small>{{ event.date }}</small>      
+            </div>
+    </article>
+{% endfor %}

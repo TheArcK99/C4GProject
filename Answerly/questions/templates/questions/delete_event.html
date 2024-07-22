@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <center>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <h1>Are you sure to want to delete? </h1>
+            <input type="submit" value="Delete">
+            <a class = "small" href="{% url 'questions:home' %}">Go Back</a>
+        </form>
+    </center>
+</div>
+
+{% endblock content %}

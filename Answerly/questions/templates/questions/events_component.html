@@ -1,0 +1,8 @@
+
+{% for message in eresponses %}
+    <div >
+        <h5><a href="{% url 'questions:profile' message.user.id %}">@{{ message.user }}</a></h5>
+        <h5>will be attending <a href="{% url 'questions:event' message.event.id %}">"{{ message.event }}"</a></h5>
+        <hr>
+    </div>
+{% endfor %}

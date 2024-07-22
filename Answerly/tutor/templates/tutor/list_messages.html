@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<center>
+    <center><h1>Your Messages</h1></center>
+    <center><small><a href="{% url 'tutor:create-message' %}">Send a message</a></small></center><br>
+    <article class="media content-section">
+        <div class = "media-body">
+            {% for message in messages %}   
+                <h1>{{message.title}}</h1>
+                
+                <h5>{{ message.sender }}</h5>
+                <small>{{ message.body }}</small><br><br>
+                <small>{{message.sent}}</small><br><br>
+                <small><a href="{% url 'tutor:create-message' %}">Respond Back</a></small>
+                <hr>
+
+            {% endfor %}         
+        </div>
+    </article>
+</center>
+
+{% endblock content %}

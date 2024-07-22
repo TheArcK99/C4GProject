@@ -1,0 +1,15 @@
+{% for question in questions %}
+    <article class="media content-section">
+            <div class = "media-body">
+                <img class="account-img" style="border-radius: 50%; width: 50px; height: 50px;" src = "{{ question.author.profile.image.url }}">
+                <p><a href="{% url 'questions:profile' question.author.id %}">@{{question.author.username}}</a></p>
+                {% if request.user == question.author %}
+                <a href="{% url 'questions:update-question' question.id %}">Edit Question | </a>
+                <a href="{% url 'questions:delete-question' question.id %}">Delete Question | </a>
+                {% endif %}
+                <h3><a href="{% url 'questions:question' question.id %}">{{ question.title }}</a></h3>
+                <small>{{question.subject}}</small><br><br>
+                <small>{{ question.created }}</small>          
+            </div>
+    </article>
+{% endfor %}

@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+    .room-container{
+        display: grid;
+        grid-template-columns: 3fr 1fr ;
+    }
+</style>
+
+
+
+<div class="room-container">
+    <div>
+        <center>
+            <h1>{{event.title}}</h1>
+
+            <small>{{ event.date }}</small><br><br>
+
+            <small>{{ event.location }}</small>
+
+            <p>{{ event.description }}</p>
+        </center>
+
+
+        <div class="comment-wrapper">
+            <center><h3>Attendance</h3></center>
+            <hr>
+            {% if request.user.is_authenticated %}
+                <div class="comment-form">
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <h2>Will you be attending {{ event.title }} at {{ event.location }} on {{ event.date }}?  </h3>
+                        <h5>Yes I will attend </h5> 
+                        <input type="checkbox"  name="attending" value="True">
+                        <h5>No I won't be attending</h5>
+                        <input type="checkbox" name="notattending" value="True">
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            {% endif %}
+            <a class="btn btn-outline-info mb-4" href="{% url 'questions:list-events'%}">Back</a>
+    </div>
+</div>
+
+<div>
+    <div>
+        <h2>Confirmed Attendees</h2>
+        <hr>
+        {% for user in attendees %}
+            <div>
+                <p>@{{user.user.username}}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>  
+
+{% endblock content %}

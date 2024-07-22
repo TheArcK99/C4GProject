@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<div>
+    <center>
+        <h1>Send a Message</h1><br>
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Send">
+        </form>
+    </center>
+</div>
+
+{% endblock content %}

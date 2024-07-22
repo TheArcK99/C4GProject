@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="room-container">
+    <div class="media content-section">
+    <h1>{{question.title}}</h1>
+
+    <small>{{ question.created }}</small>
+
+    <p>{{ question.description }}</p>
+
+    {% if question.image != 'default.jpg' %}
+        <img style="width: 300px; height: 300px;"src="{{question.image.url}}">
+    {% endif %}
+
+    <div class="comment-wrapper">
+        <h3>Conversation</h3>
+        <hr>
+
+        {% for response in responses %}
+            <div>
+            <small>@{{response.user.username}} {{response.created|timesince}}</small>
+            <p>{{response.body}}</p>
+            <hr>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if request.user.is_authenticated %}
+            <div class="comment-form">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <input type="text" name="response" placeholder="message here">
+                </form>
+            </div>
+        {% endif %}
+    </div>
+    <div>
+        <h2>Participants</h2>
+        <hr>
+
+        {% for user in participants %}
+            <div>
+                <h2>@{{user.username}}</h2>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

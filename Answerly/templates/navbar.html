@@ -1,0 +1,13 @@
+{% if request.user.is_authenticated %}
+  <nav class="topnav">
+      <a  href="{% url 'questions:home' %}">answerly.</a>
+      <a href="{% url 'questions:profile' request.user.id %}">Profile</a>
+      <a href="{% url 'tutor:display-messages' request.user.id %}">Messages</a>
+      <a href="{% url 'questions:logout' %}">Logout</a>
+  </nav>
+{% else %}
+  <nav class="topnav">
+      <a href="{% url 'questions:home' %}">answerly.</a>
+      <a href="{% url 'questions:login' %}">Login</a>
+  </nav>
+{% endif %}

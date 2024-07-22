@@ -1,0 +1,45 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+    .profile-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+</style>
+
+<div>
+    <center><img class="account-img" style="border-radius: 50%;" src = "{{ user.profile.image.url }}"></center>
+</div>
+<div>
+    <center><h1>{{ user.username }}</h1></center>
+    <center><a href = "{% url 'questions:update-profile'%}">Update Profile</a></center><br>
+</div>
+
+<div class = "profile-container">
+    <div class="browse">
+        <a href="{% url 'questions:profile' user.id %}?q=questions">Questions</a>
+        <a href="{% url 'questions:profile' user.id %}?q=events">Events</a>
+        <a href="{% url 'questions:profile' user.id %}">All</a>
+    </div>
+    
+    <div>
+        {% if type == 'questions' %}
+            {% include 'questions/feed_component.html'%}
+        
+        {% elif type == 'events' %}
+            {% include 'questions/event_feed.html'%}
+        {% else %}
+            {% include 'questions/feed_component.html'%}
+            {% include 'questions/event_feed.html'%}
+        {% endif %}
+    </div>
+
+    <div>
+        {% include 'questions/activity_component.html' %}
+        {% include 'questions/events_component.html' %}
+    </div>
+</div>
+
+{% endblock content%}

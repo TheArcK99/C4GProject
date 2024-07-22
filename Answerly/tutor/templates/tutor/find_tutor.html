@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% if type == 'search' %}
+    <center>
+        <div>
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1>Find a Tutor</h1>
+                <input type="text" style="width: 215px;" name="class" placeholder="What class do you need help with?">
+                <br>
+                <h2>What subject do you need help in?</h2>
+                <select name="subject">
+                    <option value="Math">Math</option>
+                    <option value="Ela">ELA</option>
+                    <option value="Science">Science</option>
+                    <option value="Social Studies">Social Studies</option>
+                </select>
+                <br>
+                <br>
+                <h2>At what level do you need help with?</h2>
+                <select name="level">
+                    <option value="Elementary">Elementary School</option>
+                    <option value="Middle">Middle School</option>
+                    <option value="High">High School</option>
+                    <option value="College">College</option>
+                </select>
+
+                <br>
+                <input type="submit" value="Sign Up">
+            </form>
+        </div>
+    </center>
+{% else %}
+    <center><h1>POTENTIAL TUTORS</h1></center>
+    {% for tutor in tutors %}
+        <center>
+            <article class="media content-section">
+                <div class = "media-body">
+                    <h1>{{tutor.name}}</small><br>
+                    <small style="font-size: 10px;"><a href="{% url 'questions:profile' tutor.user.id %}">@{{tutor.user.username}}</a></small>
+                    <h5>{{tutor.subject}} Tutor</h5>
+                    <h5>{{ tutor.email }}</small><br><br>
+                    <small>{{tutor.bio}}</small>
+                    <hr>            
+                    <a href="{% url 'tutor:create-message' %}">Send a message</a>
+                </div>
+            </article>
+        </center>
+    {% endfor %}
+
+
+{% endif %}
+
+{% endblock content %}

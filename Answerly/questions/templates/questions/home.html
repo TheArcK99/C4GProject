@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<article class="media content-section">
+    <div class="media-body">
+      <center><h1>
+          {% if request.user.is_authenticated %}
+            Welcome to Answerly, {{request.user.username}}!
+          {% else %}
+            Welcome to Answerly!
+          {% endif %}
+        </h1></center>
+    </div>
+  </article>
+
+  <article class="media content-section">
+    <div class="media-body">
+      <center><h2><a class = 'article-title 'href="{% url 'questions:list-events' %}">Explore Events</a></h2></center>
+    </div>
+    <div>
+        <center><p class="article-content">Get involved by joining or starting your own events. Whether it be community fundraisers or club meetings!</p></center>
+    </div>
+  </article>
+
+
+  
+{% endblock content%}

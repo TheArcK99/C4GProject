@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="home-container">
+    <div class="browse">
+        <h2>Sort Events</h2>
+        <hr>
+        <a href="{% url 'questions:list-events' %}?q=newest">Newest</a>
+        <a href="{% url 'questions:list-events' %}?q=oldest">Oldest</a>
+        <a href="{% url 'questions:list-events' %}">All Events</a>
+    </div>
+    <div>
+        
+        <center><h3>{{event_count}} events avaliable</h3></center>
+        <center><a href="{% url 'questions:create-event' %}">Create Event</a></center>
+        <form method="GET" action="">
+            {% csrf_token %}
+            <center><input type="text" name="e" placeholder="Search Events..."></center>
+        </form>
+        <hr>
+            {% include 'questions/event_feed.html' %}
+    </div>
+
+    <div>
+        <h3>Recent Activity</h3>
+        <hr>
+        {% include 'questions/events_component.html' %}
+    </div>
+
+</div>
+
+{% endblock content %}
