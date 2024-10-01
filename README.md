@@ -1,1 +1,1 @@
-This is a project I worked on for a Computing4Good Program called Hango. It is used to help organize local community events and features an RSVP system. It was built with Django/Python and uses a SQLite Database.
+This is a project I worked on for a Computing4Good Program called Hango. It is used to help organize local community events and features an RSVP system. It was built with Django/Python and uses a SQLite Database. Based on a previously built Tutoring system.
